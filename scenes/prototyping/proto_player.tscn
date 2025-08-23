@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjofoeejklpqm"]
+
+[ext_resource type="Script" uid="uid://dhluxv7doakhk" path="res://scenes/prototyping/proto_player.gd" id="1_e6u2l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6u2l"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fp04b"]
+
+[node name="ProtoPlayer" type="Node2D"]
+script = ExtResource("1_e6u2l")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_e6u2l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_fp04b")

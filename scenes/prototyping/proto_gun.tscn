@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnq0i4tpixm3r"]
+
+[ext_resource type="Script" uid="uid://3heiskealb0d" path="res://scenes/prototyping/proto_gun.gd" id="1_v87rx"]
+
+[node name="ProtoGun" type="Node2D"]
+script = ExtResource("1_v87rx")
