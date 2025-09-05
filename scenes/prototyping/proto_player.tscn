@@ -1,20 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjofoeejklpqm"]
+[gd_scene load_steps=5 format=3 uid="uid://bjofoeejklpqm"]
 
 [ext_resource type="Script" uid="uid://dhluxv7doakhk" path="res://scenes/prototyping/proto_player.gd" id="1_e6u2l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6u2l"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_e6u2l"]
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fp04b"]
+size = Vector2(10, 5)
 
-[node name="ProtoPlayer" type="Node2D"]
+[node name="ProtoPlayer" type="CharacterBody2D"]
 script = ExtResource("1_e6u2l")
+shot_delay_ms = 100.0
+bullet_speed = 1000.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-motion_mode = 1
+[node name="Crosshair" type="Node" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="Line2D" type="Line2D" parent="Crosshair"]
+points = PackedVector2Array(-8, -8, -4, 0, -8, 8, 0, 4, 8, 8, 4, 0, 8, -8, 0, -4)
+closed = true
+width = 3.0
+default_color = Color(1, 0, 0, 0.498039)
+joint_mode = 2
+antialiased = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_e6u2l")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="sprite_player" type="Sprite2D" parent="."]
 scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_e6u2l")
+
+[node name="sprite_gun" type="Sprite2D" parent="."]
+position = Vector2(20, 5)
+scale = Vector2(1.431, 1)
 texture = SubResource("PlaceholderTexture2D_fp04b")
