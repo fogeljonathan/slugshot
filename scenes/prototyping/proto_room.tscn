@@ -49,5 +49,3 @@ position = Vector2(1270, 360)
 shape = SubResource("RectangleShape2D_et8it")
 
 [node name="bullets" type="Node" parent="."]
-
-[connection signal="spawn_bullet" from="." to="." method="_on_spawn_bullet"]
