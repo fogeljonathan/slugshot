@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcitrujjsrgxs"
-path="res://.godot/imported/shotgun.svg-ab246f7b10db09e5080ed0bdf4f4dba1.ctex"
+uid="uid://c1ssho7l4y751"
+path="res://.godot/imported/snailgun-Sheet.png-e8e89be8c4dcfb6e2dd273cfd6d0b227.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/svgs/shotgun.svg"
-dest_files=["res://.godot/imported/shotgun.svg-ab246f7b10db09e5080ed0bdf4f4dba1.ctex"]
+source_file="res://assets/sprites/sprites/snailgun-Sheet.png"
+dest_files=["res://.godot/imported/snailgun-Sheet.png-e8e89be8c4dcfb6e2dd273cfd6d0b227.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

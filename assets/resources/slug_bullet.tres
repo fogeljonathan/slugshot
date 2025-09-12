@@ -1,0 +1,9 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://3qxvt60lqjai"]
+
+[ext_resource type="Texture2D" uid="uid://baw2pgstt3jrm" path="res://assets/sprites/sprites/slug_bullet-Sheet.png" id="1_karl1"]
+[ext_resource type="Texture2D" uid="uid://bpc0com3pl1lr" path="res://assets/sprites/normals/slug_bullet-Sheet-Normal.png" id="2_6yoqb"]
+
+[resource]
+diffuse_texture = ExtResource("1_karl1")
+normal_texture = ExtResource("2_6yoqb")
+texture_filter = 1

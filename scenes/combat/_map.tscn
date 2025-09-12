@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8vxfmevusp40"]
+
+[ext_resource type="Script" uid="uid://bbm3tu4cxsjmn" path="res://scenes/combat/_map.gd" id="1_fxjpw"]
+[ext_resource type="PackedScene" uid="uid://d1aqasklycogp" path="res://scenes/combat/_bullet.tscn" id="2_riexg"]
+[ext_resource type="Texture2D" uid="uid://igi30xbtb2o" path="res://assets/sprites/sprites/checkerboard_floor.png" id="3_2e25g"]
+[ext_resource type="PackedScene" uid="uid://cekw2ntpljjku" path="res://scenes/combat/_lamp.tscn" id="4_2e25g"]
+[ext_resource type="Texture2D" uid="uid://ds5u7nhbuhdki" path="res://assets/sprites/normals/checkerboard_floor.png" id="4_nv75v"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_45fr5"]
+diffuse_texture = ExtResource("3_2e25g")
+normal_texture = ExtResource("4_nv75v")
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_fxjpw")
+_bullet = ExtResource("2_riexg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(240, 135)
+texture = SubResource("CanvasTexture_45fr5")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(-21, -26)
+color = Color(0.7, 0.7, 0.7, 1)
+energy = 4.0
+blend_mode = 1
+height = 0.25
+
+[node name="Lamp" parent="." instance=ExtResource("4_2e25g")]
+position = Vector2(69, 196)
+
+[node name="Lamp2" parent="." instance=ExtResource("4_2e25g")]
+position = Vector2(348, 4)
+
+[node name="Lamp3" parent="." instance=ExtResource("4_2e25g")]
+position = Vector2(405, 244)
+
+[node name="bullets" type="Node" parent="."]

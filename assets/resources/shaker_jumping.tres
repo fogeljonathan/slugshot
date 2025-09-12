@@ -1,0 +1,9 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://c3pnmdj2bx2o3"]
+
+[ext_resource type="Texture2D" uid="uid://dbgwtf8gsdd6a" path="res://assets/sprites/sprites/shaker_jumping-Sheet.png" id="1_8sj6l"]
+[ext_resource type="Texture2D" uid="uid://dhidhfheibatu" path="res://assets/sprites/normals/shaker_jumping-Sheet-Normal.png" id="2_8ne6v"]
+
+[resource]
+diffuse_texture = ExtResource("1_8sj6l")
+normal_texture = ExtResource("2_8ne6v")
+texture_filter = 1

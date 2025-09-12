@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b18j42hyx1ouc"]
+
+[ext_resource type="PackedScene" uid="uid://b8vxfmevusp40" path="res://scenes/combat/_map.tscn" id="1_wu7mx"]
+[ext_resource type="PackedScene" uid="uid://cjln0igko6r8j" path="res://scenes/combat/_player.tscn" id="2_ltlbw"]
+
+[node name="Game" type="Node"]
+
+[node name="Map" parent="." instance=ExtResource("1_wu7mx")]
+
+[node name="Player" parent="." instance=ExtResource("2_ltlbw")]
+position = Vector2(159, 90)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

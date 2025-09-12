@@ -1,0 +1,9 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://dn6bcussmbn64"]
+
+[ext_resource type="Texture2D" uid="uid://c1ssho7l4y751" path="res://assets/sprites/sprites/snailgun-Sheet.png" id="1_ib7nw"]
+[ext_resource type="Texture2D" uid="uid://wkt0vut6hye7" path="res://assets/sprites/normals/snailgun-Sheet-Normal.png" id="2_u4rt2"]
+
+[resource]
+diffuse_texture = ExtResource("1_ib7nw")
+normal_texture = ExtResource("2_u4rt2")
+texture_filter = 1

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxmyguqpda5ra"
-path="res://.godot/imported/ammo-8-8x.png-fb4894b2642d0f3af1aacba2c5deabf5.ctex"
+uid="uid://ds5u7nhbuhdki"
+path="res://.godot/imported/checkerboard_floor.png-3fc42375d6feae2293f93fa27c9cb292.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ammo-8-8x.png"
-dest_files=["res://.godot/imported/ammo-8-8x.png-fb4894b2642d0f3af1aacba2c5deabf5.ctex"]
+source_file="res://assets/sprites/normals/checkerboard_floor.png"
+dest_files=["res://.godot/imported/checkerboard_floor.png-3fc42375d6feae2293f93fa27c9cb292.ctex"]
 
 [params]
 

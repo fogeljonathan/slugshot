@@ -1,0 +1,9 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://c5da5ddw6w6f7"]
+
+[ext_resource type="Texture2D" uid="uid://di72622ela0n7" path="res://assets/sprites/sprites/slug_moving_right-Sheet.png" id="1_5sjwk"]
+[ext_resource type="Texture2D" uid="uid://2qp03xkb6o88" path="res://assets/sprites/normals/slug_moving_right-Sheet-Normal.png" id="2_f158s"]
+
+[resource]
+diffuse_texture = ExtResource("1_5sjwk")
+normal_texture = ExtResource("2_f158s")
+texture_filter = 1
