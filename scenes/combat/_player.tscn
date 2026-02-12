@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjln0igko6r8j"]
+[gd_scene format=3 uid="uid://cjln0igko6r8j"]
 
 [ext_resource type="Script" uid="uid://ckubelfcfraph" path="res://scenes/combat/_player.gd" id="1_6twnc"]
 [ext_resource type="Texture2D" uid="uid://di72622ela0n7" path="res://assets/sprites/sprites/slug_moving_right-Sheet.png" id="2_erpxp"]
@@ -13,12 +13,6 @@ height = 21.5885
 [sub_resource type="CanvasTexture" id="CanvasTexture_ijmbt"]
 diffuse_texture = ExtResource("2_erpxp")
 normal_texture = ExtResource("3_sph5w")
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_erho3"]
-diffuse_texture = ExtResource("4_ijmbt")
-normal_texture = ExtResource("5_7ehmy")
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ijmbt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ijmbt"]
 atlas = ExtResource("2_erpxp")
@@ -56,13 +50,19 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_erho3"]
+diffuse_texture = ExtResource("4_ijmbt")
+normal_texture = ExtResource("5_7ehmy")
+
+[node name="Player" type="CharacterBody2D" unique_id=146683592]
+y_sort_enabled = true
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_6twnc")
 
-[node name="Crosshair" type="Node" parent="."]
+[node name="Crosshair" type="Node" parent="." unique_id=1938773966]
 
-[node name="Line2D" type="Line2D" parent="Crosshair"]
+[node name="Line2D" type="Line2D" parent="Crosshair" unique_id=1645895510]
 light_mask = 524288
 position = Vector2(72, -34)
 points = PackedVector2Array(-8, -8, -4, 0, -8, 8, 0, 4, 8, 8, 4, 0, 8, -8, 0, -4)
@@ -71,29 +71,33 @@ width = 3.0
 joint_mode = 2
 antialiased = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=961244094]
 position = Vector2(0, -2)
 rotation = 0.523598
 shape = SubResource("CapsuleShape2D_7rcry")
 
-[node name="sprite_player" type="Sprite2D" parent="."]
+[node name="sprite_player" type="Sprite2D" parent="." unique_id=1790417700]
 texture_filter = 1
 position = Vector2(-4, -8)
 texture = SubResource("CanvasTexture_ijmbt")
 hframes = 4
 
-[node name="sprite_gun" type="Sprite2D" parent="."]
+[node name="slug_animation" type="AnimatedSprite2D" parent="." unique_id=501137483]
+visible = false
+texture_filter = 1
+position = Vector2(-4, -8)
+sprite_frames = SubResource("SpriteFrames_ippm4")
+animation = &"moving_right"
+autoplay = "moving_right"
+frame_progress = 0.486729
+
+[node name="sprite_gun" type="Sprite2D" parent="." unique_id=2094696653]
 texture_filter = 1
 scale = Vector2(1.431, 1)
 texture = SubResource("CanvasTexture_erho3")
 offset = Vector2(10, 0)
 hframes = 4
 
-[node name="slug_animation" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-material = SubResource("CanvasItemMaterial_ijmbt")
-position = Vector2(50, 3)
-sprite_frames = SubResource("SpriteFrames_ippm4")
-animation = &"moving_right"
-autoplay = "moving_right"
-frame_progress = 0.486729
+[node name="end_of_gun" type="Node2D" parent="sprite_gun" unique_id=952585559]
+position = Vector2(20.964361, -4)
+scale = Vector2(0.698812, 1)

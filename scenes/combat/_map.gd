@@ -10,7 +10,7 @@ func _ready() -> void:
 func _on_spawn_bullet(spawn_position: Vector2, spawn_rotation: float, spawn_speed: float) -> void:
 	var b = _bullet.instantiate()
 	print("bullet fired")
-	get_node("bullets").add_child(b)
 	b.position = spawn_position
 	b.rotation = spawn_rotation
 	b.linear_velocity = Vector2(spawn_speed * cos(spawn_rotation), spawn_speed * sin(spawn_rotation))
+	get_node("bullets").add_child(b)

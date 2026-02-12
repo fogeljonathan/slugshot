@@ -31,7 +31,7 @@ func _process(delta) -> void:
 	# shooting
 	if Input.is_action_pressed("shoot") :
 		if validate_shot() :
-			SIGNALS.emit_signal("spawn_bullet", $sprite_gun.global_position, $sprite_gun.global_rotation, bullet_speed)
+			SIGNALS.emit_signal("spawn_bullet", $sprite_gun/end_of_gun.global_position, $sprite_gun.global_rotation, bullet_speed)
 			last_shot_time_ms = Time.get_ticks_msec()
 
 func validate_shot() -> bool:

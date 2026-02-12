@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1aqasklycogp"]
+[gd_scene format=3 uid="uid://d1aqasklycogp"]
 
 [ext_resource type="Texture2D" uid="uid://baw2pgstt3jrm" path="res://assets/sprites/sprites/slug_bullet-Sheet.png" id="1_s72hp"]
 [ext_resource type="Texture2D" uid="uid://bpc0com3pl1lr" path="res://assets/sprites/normals/slug_bullet-Sheet-Normal.png" id="2_n3bjw"]
@@ -7,10 +7,19 @@
 diffuse_texture = ExtResource("1_s72hp")
 normal_texture = ExtResource("2_n3bjw")
 
-[node name="Bullet" type="RigidBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_s72hp"]
+radius = 7.0
+
+[node name="Bullet" type="RigidBody2D" unique_id=308882633]
+disable_mode = 2
+mass = 0.001
 gravity_scale = 0.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1452269825]
 texture_filter = 1
 texture = SubResource("CanvasTexture_7anxl")
 hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1421001232]
+position = Vector2(7, 0)
+shape = SubResource("CircleShape2D_s72hp")
