@@ -1,23 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://cekw2ntpljjku"]
+[gd_scene format=3 uid="uid://cekw2ntpljjku"]
 
-[sub_resource type="Gradient" id="Gradient_0pl0c"]
+[sub_resource type="Gradient" id="Gradient_1xo60"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1xo60"]
-gradient = SubResource("Gradient_0pl0c")
-width = 256
-height = 256
+gradient = SubResource("Gradient_1xo60")
+width = 540
+height = 540
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.6, 0)
 
-[node name="Lamp" type="Node2D"]
+[node name="Lamp" type="Node2D" unique_id=224339336]
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1381017056]
 position = Vector2(-6, -2)
-energy = 2.0
+energy = 0.41
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 shadow_filter_smooth = 22.7
 shadow_item_cull_mask = 0
 texture = SubResource("GradientTexture2D_1xo60")
-height = 50.0
+height = 44.0

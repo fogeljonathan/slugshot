@@ -1,64 +1,95 @@
 [gd_scene format=3 uid="uid://cjln0igko6r8j"]
 
 [ext_resource type="Script" uid="uid://ckubelfcfraph" path="res://scenes/combat/_player.gd" id="1_6twnc"]
-[ext_resource type="Texture2D" uid="uid://di72622ela0n7" path="res://assets/sprites/sprites/slug_moving_right-Sheet.png" id="2_erpxp"]
+[ext_resource type="Texture2D" uid="uid://c5da5ddw6w6f7" path="res://assets/resources/slug_moving_right.tres" id="3_7ehmy"]
 [ext_resource type="Texture2D" uid="uid://2qp03xkb6o88" path="res://assets/sprites/normals/slug_moving_right-Sheet-Normal.png" id="3_sph5w"]
 [ext_resource type="Texture2D" uid="uid://c1ssho7l4y751" path="res://assets/sprites/sprites/snailgun-Sheet.png" id="4_ijmbt"]
 [ext_resource type="Texture2D" uid="uid://wkt0vut6hye7" path="res://assets/sprites/normals/snailgun-Sheet-Normal.png" id="5_7ehmy"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7rcry"]
-radius = 7.0
-height = 21.5885
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_ijmbt"]
-diffuse_texture = ExtResource("2_erpxp")
-normal_texture = ExtResource("3_sph5w")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ijmbt"]
-atlas = ExtResource("2_erpxp")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ehmy"]
-atlas = ExtResource("2_erpxp")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh7h2"]
+atlas = ExtResource("3_7ehmy")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_erho3"]
-atlas = ExtResource("2_erpxp")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eugr3"]
-atlas = ExtResource("2_erpxp")
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2mvc"]
+atlas = ExtResource("3_7ehmy")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l56x"]
+atlas = ExtResource("3_7ehmy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enm4s"]
+atlas = ExtResource("3_7ehmy")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ippm4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ijmbt")
+"texture": SubResource("AtlasTexture_xh7h2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7ehmy")
+"texture": SubResource("AtlasTexture_l2mvc")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l56x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_erho3")
+"texture": SubResource("AtlasTexture_xh7h2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eugr3")
+"texture": SubResource("AtlasTexture_enm4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2mvc")
 }],
 "loop": true,
 "name": &"moving_right",
-"speed": 8.0
+"speed": 6.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7rcry"]
+radius = 7.0
+height = 21.5885
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7ehmy"]
+load_path = "res://.godot/imported/slug_moving_right-Sheet.png-1b4b8da29e92b498e8e95a1618e0a586.ctex"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ijmbt"]
+diffuse_texture = SubResource("CompressedTexture2D_7ehmy")
+normal_texture = ExtResource("3_sph5w")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_erho3"]
 diffuse_texture = ExtResource("4_ijmbt")
 normal_texture = ExtResource("5_7ehmy")
+
+[sub_resource type="Gradient" id="Gradient_1xo60"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ijmbt"]
+gradient = SubResource("Gradient_1xo60")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.6, 0.5)
+fill_to = Vector2(0.055555556, 0.52136755)
 
 [node name="Player" type="CharacterBody2D" unique_id=146683592]
 y_sort_enabled = true
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_6twnc")
+
+[node name="debug" type="Label" parent="." unique_id=756134361]
+offset_left = -20.0
+offset_top = -42.0
+offset_right = 20.0
+offset_bottom = -19.0
 
 [node name="Crosshair" type="Node" parent="." unique_id=1938773966]
 
@@ -71,25 +102,25 @@ width = 3.0
 joint_mode = 2
 antialiased = true
 
+[node name="slug_animation" type="AnimatedSprite2D" parent="." unique_id=501137483]
+texture_filter = 1
+position = Vector2(-4, -8)
+sprite_frames = SubResource("SpriteFrames_ippm4")
+animation = &"idle_right"
+autoplay = "idle_right"
+frame_progress = 0.60875976
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=961244094]
 position = Vector2(0, -2)
 rotation = 0.523598
 shape = SubResource("CapsuleShape2D_7rcry")
 
 [node name="sprite_player" type="Sprite2D" parent="." unique_id=1790417700]
+visible = false
 texture_filter = 1
 position = Vector2(-4, -8)
 texture = SubResource("CanvasTexture_ijmbt")
 hframes = 4
-
-[node name="slug_animation" type="AnimatedSprite2D" parent="." unique_id=501137483]
-visible = false
-texture_filter = 1
-position = Vector2(-4, -8)
-sprite_frames = SubResource("SpriteFrames_ippm4")
-animation = &"moving_right"
-autoplay = "moving_right"
-frame_progress = 0.486729
 
 [node name="sprite_gun" type="Sprite2D" parent="." unique_id=2094696653]
 texture_filter = 1
@@ -101,3 +132,13 @@ hframes = 4
 [node name="end_of_gun" type="Node2D" parent="sprite_gun" unique_id=952585559]
 position = Vector2(20.964361, -4)
 scale = Vector2(0.698812, 1)
+
+[node name="muzzle_flash" type="PointLight2D" parent="sprite_gun/end_of_gun" unique_id=1367858969]
+position = Vector2(-1, -2)
+energy = 0.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter_smooth = 22.7
+shadow_item_cull_mask = 0
+texture = SubResource("GradientTexture2D_ijmbt")
+height = 20.0

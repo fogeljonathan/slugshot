@@ -11,6 +11,7 @@ func hide_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _on_spawn_bullet(spawn_position: Vector2, spawn_rotation: float, spawn_speed: float) -> void:
+	SIGNALS.do_muzzle_flash.emit()
 	var b = bullet.instantiate()
 	print("AAAA")
 	get_node("bullets").add_child(b)
