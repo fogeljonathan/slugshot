@@ -2,8 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://b8vxfmevusp40" path="res://scenes/combat/_map.tscn" id="1_wu7mx"]
 [ext_resource type="PackedScene" uid="uid://cjln0igko6r8j" path="res://scenes/combat/_player.tscn" id="2_ltlbw"]
+[ext_resource type="Script" uid="uid://c3xbvbrgwdqg" path="res://scenes/combat/camera.gd" id="3_ltlbw"]
 
 [node name="Game" type="Node" unique_id=378649132]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=965977236]
+anchor_mode = 0
+ignore_rotation = false
+script = ExtResource("3_ltlbw")
 
 [node name="Map" parent="." unique_id=1270847425 instance=ExtResource("1_wu7mx")]
 
