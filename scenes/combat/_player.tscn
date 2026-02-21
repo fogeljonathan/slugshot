@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ckubelfcfraph" path="res://scenes/combat/_player.gd" id="1_6twnc"]
 [ext_resource type="Texture2D" uid="uid://c5da5ddw6w6f7" path="res://assets/resources/slug_moving_right.tres" id="3_7ehmy"]
 [ext_resource type="Texture2D" uid="uid://2qp03xkb6o88" path="res://assets/sprites/normals/slug_moving_right-Sheet-Normal.png" id="3_sph5w"]
+[ext_resource type="Texture2D" uid="uid://dn6bcussmbn64" path="res://assets/resources/snailgun_firing.tres" id="4_7ehmy"]
 [ext_resource type="Texture2D" uid="uid://c1ssho7l4y751" path="res://assets/sprites/sprites/snailgun-Sheet.png" id="4_ijmbt"]
 [ext_resource type="Texture2D" uid="uid://wkt0vut6hye7" path="res://assets/sprites/normals/snailgun-Sheet-Normal.png" id="5_7ehmy"]
 
@@ -79,6 +80,45 @@ normal_texture = ExtResource("3_sph5w")
 diffuse_texture = ExtResource("4_ijmbt")
 normal_texture = ExtResource("5_7ehmy")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ehmy"]
+atlas = ExtResource("4_7ehmy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erho3"]
+atlas = ExtResource("4_7ehmy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eugr3"]
+atlas = ExtResource("4_7ehmy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ippm4"]
+atlas = ExtResource("4_7ehmy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_snwlt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ehmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erho3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eugr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ippm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ehmy")
+}],
+"loop": false,
+"name": &"shooting",
+"speed": 30.0
+}]
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ijmbt"]
 light_mode = 1
 
@@ -135,6 +175,7 @@ texture = SubResource("CanvasTexture_ijmbt")
 hframes = 4
 
 [node name="sprite_gun" type="Sprite2D" parent="." unique_id=2094696653]
+visible = false
 texture_filter = 1
 scale = Vector2(1.431, 1)
 texture = SubResource("CanvasTexture_erho3")
@@ -142,10 +183,35 @@ offset = Vector2(10, 0)
 hframes = 4
 
 [node name="end_of_gun" type="Node2D" parent="sprite_gun" unique_id=952585559]
+visible = false
 position = Vector2(20.964361, -4)
 scale = Vector2(0.698812, 1)
 
 [node name="muzzle_flash" type="PointLight2D" parent="sprite_gun/end_of_gun" unique_id=1367858969]
+visible = false
+position = Vector2(4, 0)
+energy = 0.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter_smooth = 22.7
+shadow_item_cull_mask = 0
+texture = SubResource("GradientTexture2D_ijmbt")
+height = 20.0
+
+[node name="gun_animation" type="AnimatedSprite2D" parent="." unique_id=1290997852]
+texture_filter = 1
+scale = Vector2(1.431, 1)
+sprite_frames = SubResource("SpriteFrames_snwlt")
+animation = &"shooting"
+frame = 4
+frame_progress = 1.0
+offset = Vector2(10, 0)
+
+[node name="end_of_gun" type="Node2D" parent="gun_animation" unique_id=1324328994]
+position = Vector2(20.964361, -4)
+scale = Vector2(0.698812, 1)
+
+[node name="muzzle_flash" type="PointLight2D" parent="gun_animation/end_of_gun" unique_id=1289372081]
 position = Vector2(4, 0)
 energy = 0.0
 shadow_enabled = true

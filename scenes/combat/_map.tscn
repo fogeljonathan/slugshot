@@ -22,7 +22,7 @@ texture = SubResource("CanvasTexture_45fr5")
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=275015737]
 position = Vector2(-21, -26)
 color = Color(0.7, 0.7, 0.7, 1)
-energy = 4.0
+energy = 5.0
 blend_mode = 1
 height = 0.21
 max_distance = 16384.0

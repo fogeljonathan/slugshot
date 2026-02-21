@@ -63,12 +63,14 @@ func _process(delta) -> void:
 	
 	# aiming
 	$crosshair.position = get_global_mouse_position()-self.position
-	$sprite_gun.look_at(get_global_mouse_position())
+	$gun_animation.look_at(get_global_mouse_position())
 	# shooting
 	if Input.is_action_pressed("shoot") :
 		if validate_shot():
 			# shoot!
-			SIGNALS.emit_signal("spawn_bullet", $sprite_gun/end_of_gun.global_position, $sprite_gun.global_rotation, bullet_speed)
+			SIGNALS.emit_signal("spawn_bullet", $gun_animation/end_of_gun.global_position, $gun_animation.global_rotation, bullet_speed)
+			$gun_animation.animation = "shooting"
+			$gun_animation.play()
 			last_shot_time_ms = Time.get_ticks_msec()
 	# extra
 	if $debug.visible:
@@ -77,9 +79,9 @@ func _process(delta) -> void:
 func _do_muzzle_flash() -> void:
 	if tween_muzzle_flash && tween_muzzle_flash.is_running():
 		tween_muzzle_flash.kill()
-	$sprite_gun/end_of_gun/muzzle_flash.energy = .25
+	$gun_animation/end_of_gun/muzzle_flash.energy = .25
 	tween_muzzle_flash = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	tween_muzzle_flash.tween_property($sprite_gun/end_of_gun/muzzle_flash, "energy", 0, .1)
+	tween_muzzle_flash.tween_property($gun_animation/end_of_gun/muzzle_flash, "energy", 0, .1)
 	
 func validate_shot() -> bool:
 	if Time.get_ticks_msec() - last_shot_time_ms > shot_delay_ms:
