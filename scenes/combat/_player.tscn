@@ -6,6 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://c1ssho7l4y751" path="res://assets/sprites/sprites/snailgun-Sheet.png" id="4_ijmbt"]
 [ext_resource type="Texture2D" uid="uid://wkt0vut6hye7" path="res://assets/sprites/normals/snailgun-Sheet-Normal.png" id="5_7ehmy"]
 
+[sub_resource type="Gradient" id="Gradient_1xo60"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ijmbt"]
+gradient = SubResource("Gradient_1xo60")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.6, 0.5)
+fill_to = Vector2(0.055555556, 0.52136755)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xh7h2"]
 atlas = ExtResource("3_7ehmy")
 region = Rect2(32, 0, 32, 32)
@@ -68,22 +79,20 @@ normal_texture = ExtResource("3_sph5w")
 diffuse_texture = ExtResource("4_ijmbt")
 normal_texture = ExtResource("5_7ehmy")
 
-[sub_resource type="Gradient" id="Gradient_1xo60"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ijmbt"]
-gradient = SubResource("Gradient_1xo60")
-width = 512
-height = 512
-fill = 1
-fill_from = Vector2(0.6, 0.5)
-fill_to = Vector2(0.055555556, 0.52136755)
-
 [node name="Player" type="CharacterBody2D" unique_id=146683592]
 y_sort_enabled = true
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_6twnc")
+
+[node name="player_light" type="PointLight2D" parent="." unique_id=1967414689]
+energy = 0.1
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter_smooth = 22.7
+shadow_item_cull_mask = 0
+texture = SubResource("GradientTexture2D_ijmbt")
+height = 20.0
 
 [node name="debug" type="Label" parent="." unique_id=756134361]
 offset_left = -20.0
@@ -134,7 +143,7 @@ position = Vector2(20.964361, -4)
 scale = Vector2(0.698812, 1)
 
 [node name="muzzle_flash" type="PointLight2D" parent="sprite_gun/end_of_gun" unique_id=1367858969]
-position = Vector2(-1, -2)
+position = Vector2(4, 0)
 energy = 0.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
