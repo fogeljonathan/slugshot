@@ -79,7 +79,7 @@ func _process(delta) -> void:
 func _do_muzzle_flash() -> void:
 	if tween_muzzle_flash && tween_muzzle_flash.is_running():
 		tween_muzzle_flash.kill()
-	$gun_animation/end_of_gun/muzzle_flash.energy = .25
+	$gun_animation/end_of_gun/muzzle_flash.energy = 3
 	tween_muzzle_flash = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	tween_muzzle_flash.tween_property($gun_animation/end_of_gun/muzzle_flash, "energy", 0, .1)
 	

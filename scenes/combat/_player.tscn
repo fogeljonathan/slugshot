@@ -2,21 +2,18 @@
 
 [ext_resource type="Script" uid="uid://ckubelfcfraph" path="res://scenes/combat/_player.gd" id="1_6twnc"]
 [ext_resource type="Texture2D" uid="uid://c5da5ddw6w6f7" path="res://assets/resources/slug_moving_right.tres" id="3_7ehmy"]
-[ext_resource type="Texture2D" uid="uid://2qp03xkb6o88" path="res://assets/sprites/normals/slug_moving_right-Sheet-Normal.png" id="3_sph5w"]
 [ext_resource type="Texture2D" uid="uid://dn6bcussmbn64" path="res://assets/resources/snailgun_firing.tres" id="4_7ehmy"]
-[ext_resource type="Texture2D" uid="uid://c1ssho7l4y751" path="res://assets/sprites/sprites/snailgun-Sheet.png" id="4_ijmbt"]
-[ext_resource type="Texture2D" uid="uid://wkt0vut6hye7" path="res://assets/sprites/normals/snailgun-Sheet-Normal.png" id="5_7ehmy"]
 
 [sub_resource type="Gradient" id="Gradient_1xo60"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ijmbt"]
 gradient = SubResource("Gradient_1xo60")
-width = 512
-height = 512
+width = 256
+height = 256
 fill = 1
-fill_from = Vector2(0.6, 0.5)
-fill_to = Vector2(0.055555556, 0.52136755)
+fill_from = Vector2(0.662, 0.5)
+fill_to = Vector2(0.299, 0.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xh7h2"]
 atlas = ExtResource("3_7ehmy")
@@ -68,17 +65,6 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7rcry"]
 radius = 7.0
 height = 21.5885
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7ehmy"]
-load_path = "res://.godot/imported/slug_moving_right-Sheet.png-1b4b8da29e92b498e8e95a1618e0a586.ctex"
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_ijmbt"]
-diffuse_texture = SubResource("CompressedTexture2D_7ehmy")
-normal_texture = ExtResource("3_sph5w")
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_erho3"]
-diffuse_texture = ExtResource("4_ijmbt")
-normal_texture = ExtResource("5_7ehmy")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ehmy"]
 atlas = ExtResource("4_7ehmy")
@@ -166,37 +152,6 @@ frame_progress = 0.60875976
 position = Vector2(0, -2)
 rotation = 0.523598
 shape = SubResource("CapsuleShape2D_7rcry")
-
-[node name="sprite_player" type="Sprite2D" parent="." unique_id=1790417700]
-visible = false
-texture_filter = 1
-position = Vector2(-4, -8)
-texture = SubResource("CanvasTexture_ijmbt")
-hframes = 4
-
-[node name="sprite_gun" type="Sprite2D" parent="." unique_id=2094696653]
-visible = false
-texture_filter = 1
-scale = Vector2(1.431, 1)
-texture = SubResource("CanvasTexture_erho3")
-offset = Vector2(10, 0)
-hframes = 4
-
-[node name="end_of_gun" type="Node2D" parent="sprite_gun" unique_id=952585559]
-visible = false
-position = Vector2(20.964361, -4)
-scale = Vector2(0.698812, 1)
-
-[node name="muzzle_flash" type="PointLight2D" parent="sprite_gun/end_of_gun" unique_id=1367858969]
-visible = false
-position = Vector2(4, 0)
-energy = 0.0
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 1)
-shadow_filter_smooth = 22.7
-shadow_item_cull_mask = 0
-texture = SubResource("GradientTexture2D_ijmbt")
-height = 20.0
 
 [node name="gun_animation" type="AnimatedSprite2D" parent="." unique_id=1290997852]
 texture_filter = 1
