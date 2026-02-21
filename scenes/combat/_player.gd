@@ -60,8 +60,9 @@ func _process(delta) -> void:
 	var collision = move_and_collide(velocity)
 	if collision:
 		velocity = 0.5 * velocity.bounce(collision.get_normal())
+	
 	# aiming
-	$Crosshair/Line2D.position = get_global_mouse_position()
+	$crosshair.position = get_global_mouse_position()-self.position
 	$sprite_gun.look_at(get_global_mouse_position())
 	# shooting
 	if Input.is_action_pressed("shoot") :

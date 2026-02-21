@@ -79,6 +79,20 @@ normal_texture = ExtResource("3_sph5w")
 diffuse_texture = ExtResource("4_ijmbt")
 normal_texture = ExtResource("5_7ehmy")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ijmbt"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_ijmbt"]
+
+[sub_resource type="Gradient" id="Gradient_7ehmy"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_erho3"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_eugr3"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody2D" unique_id=146683592]
 y_sort_enabled = true
 collision_layer = 2
@@ -99,17 +113,6 @@ offset_left = -20.0
 offset_top = -42.0
 offset_right = 20.0
 offset_bottom = -19.0
-
-[node name="Crosshair" type="Node" parent="." unique_id=1938773966]
-
-[node name="Line2D" type="Line2D" parent="Crosshair" unique_id=1645895510]
-light_mask = 524288
-position = Vector2(72, -34)
-points = PackedVector2Array(-8, -8, -4, 0, -8, 8, 0, 4, 8, 8, 4, 0, 8, -8, 0, -4)
-closed = true
-width = 3.0
-joint_mode = 2
-antialiased = true
 
 [node name="slug_animation" type="AnimatedSprite2D" parent="." unique_id=501137483]
 texture_filter = 1
@@ -151,3 +154,47 @@ shadow_filter_smooth = 22.7
 shadow_item_cull_mask = 0
 texture = SubResource("GradientTexture2D_ijmbt")
 height = 20.0
+
+[node name="crosshair" type="Node2D" parent="." unique_id=1479847455]
+material = SubResource("CanvasItemMaterial_ijmbt")
+
+[node name="left_line" type="Line2D" parent="crosshair" unique_id=2079383761]
+use_parent_material = true
+position = Vector2(-1.9073486e-06, 0)
+points = PackedVector2Array(-9.999998, 0, -4.999998, 0)
+width = 3.0
+gradient = SubResource("Gradient_ijmbt")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="right_line" type="Line2D" parent="crosshair" unique_id=1116320630]
+use_parent_material = true
+points = PackedVector2Array(5, 0, 10, 0)
+width = 3.0
+gradient = SubResource("Gradient_7ehmy")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="up_line" type="Line2D" parent="crosshair" unique_id=1293624659]
+use_parent_material = true
+points = PackedVector2Array(0, -5, 0, -10)
+width = 3.0
+gradient = SubResource("Gradient_erho3")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="down_line" type="Line2D" parent="crosshair" unique_id=1455145483]
+use_parent_material = true
+points = PackedVector2Array(0, 5, 0, 10)
+width = 3.0
+gradient = SubResource("Gradient_eugr3")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
