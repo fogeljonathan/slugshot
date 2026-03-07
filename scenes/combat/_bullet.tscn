@@ -1,7 +1,44 @@
 [gd_scene format=3 uid="uid://d1aqasklycogp"]
 
+[ext_resource type="Texture2D" uid="uid://3qxvt60lqjai" path="res://assets/resources/slug_bullet.tres" id="1_n3bjw"]
 [ext_resource type="Texture2D" uid="uid://baw2pgstt3jrm" path="res://assets/sprites/sprites/slug_bullet-Sheet.png" id="1_s72hp"]
 [ext_resource type="Texture2D" uid="uid://bpc0com3pl1lr" path="res://assets/sprites/normals/slug_bullet-Sheet-Normal.png" id="2_n3bjw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7anxl"]
+atlas = ExtResource("1_n3bjw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1vxr"]
+atlas = ExtResource("1_n3bjw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8n3l"]
+atlas = ExtResource("1_n3bjw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vsci"]
+atlas = ExtResource("1_n3bjw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lniyl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7anxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1vxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8n3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vsci")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7anxl"]
 diffuse_texture = ExtResource("1_s72hp")
@@ -15,7 +52,12 @@ disable_mode = 2
 mass = 0.001
 gravity_scale = 0.0
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2085521950]
+sprite_frames = SubResource("SpriteFrames_lniyl")
+autoplay = "default"
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1452269825]
+visible = false
 texture_filter = 1
 texture = SubResource("CanvasTexture_7anxl")
 hframes = 4

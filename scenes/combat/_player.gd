@@ -7,7 +7,7 @@ var friction_term:float = 10.
 # gun and bullet spawning
 var last_shot_time_ms:int = 0
 @export var shot_delay_ms:float = .2 * 1000
-@export var bullet_speed:float = 500
+@export var bullet_speed:float = 200
 var tween_muzzle_flash : Tween
 
 # state machine
