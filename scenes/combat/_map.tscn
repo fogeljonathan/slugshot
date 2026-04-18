@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bbm3tu4cxsjmn" path="res://scenes/combat/_map.gd" id="1_fxjpw"]
 [ext_resource type="PackedScene" uid="uid://d1aqasklycogp" path="res://scenes/combat/_bullet.tscn" id="2_riexg"]
 [ext_resource type="Texture2D" uid="uid://igi30xbtb2o" path="res://assets/sprites/sprites/checkerboard_floor.png" id="3_2e25g"]
+[ext_resource type="PackedScene" uid="uid://bilaoepqpyoe3" path="res://scenes/combat/_shaker.tscn" id="3_nv75v"]
 [ext_resource type="PackedScene" uid="uid://cekw2ntpljjku" path="res://scenes/combat/_lamp.tscn" id="4_2e25g"]
 [ext_resource type="Texture2D" uid="uid://ds5u7nhbuhdki" path="res://assets/sprites/normals/checkerboard_floor.png" id="4_nv75v"]
 
@@ -10,9 +11,24 @@
 diffuse_texture = ExtResource("3_2e25g")
 normal_texture = ExtResource("4_nv75v")
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2e25g"]
+b = Vector2(0, 270)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nv75v"]
+b = Vector2(480, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_45fr5"]
+a = Vector2(480, 270)
+b = Vector2(480, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6n0je"]
+a = Vector2(480, 270)
+b = Vector2(0, 270)
+
 [node name="Map" type="Node2D" unique_id=566650987]
 script = ExtResource("1_fxjpw")
 _bullet = ExtResource("2_riexg")
+_shaker = ExtResource("3_nv75v")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=621291291]
 texture_filter = 1
@@ -36,3 +52,19 @@ position = Vector2(348, 4)
 position = Vector2(405, 244)
 
 [node name="bullets" type="Node" parent="." unique_id=1327676479]
+
+[node name="boundaries" type="StaticBody2D" parent="." unique_id=407132993]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries" unique_id=1656264792]
+shape = SubResource("SegmentShape2D_2e25g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="boundaries" unique_id=1806346469]
+shape = SubResource("SegmentShape2D_nv75v")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="boundaries" unique_id=1151403097]
+shape = SubResource("SegmentShape2D_45fr5")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="boundaries" unique_id=1860219044]
+shape = SubResource("SegmentShape2D_6n0je")
+
+[node name="shakers" type="Node" parent="." unique_id=174218477]

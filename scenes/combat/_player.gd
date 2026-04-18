@@ -17,6 +17,13 @@ enum MOTION {MOVING, IDLE}
 @onready var state_motion:MOTION = MOTION.IDLE
 var inputdir = Vector2(0,0)
 
+# audio 
+@export var movement_noise : AudioStream
+var last_movement_noise_time_ms:int = 0
+var movement_noise_delay_ms:int = 310
+@export var idle_noise : AudioStream
+@export var gunshot_noise : AudioStream
+
 func _ready() -> void:
 	if !SIGNALS.is_connected("spawn_muzzle_flash", _do_muzzle_flash):
 		SIGNALS.spawn_muzzle_flash.connect(_do_muzzle_flash)
@@ -40,6 +47,9 @@ func _input(event: InputEvent) -> void:
 		state_motion = MOTION.IDLE
 	else:
 		state_motion = MOTION.MOVING
+	if Time.get_ticks_msec() - last_movement_noise_time_ms > movement_noise_delay_ms:
+		last_movement_noise_time_ms = Time.get_ticks_msec()
+		AUDIO.play_sound(movement_noise)
 	
 func _process(delta) -> void:
 	# l/r sprite flipping
@@ -71,6 +81,7 @@ func _process(delta) -> void:
 			SIGNALS.emit_signal("spawn_bullet", $gun_animation/end_of_gun.global_position, $gun_animation.global_rotation, bullet_speed)
 			$gun_animation.animation = "shooting"
 			$gun_animation.play()
+			AUDIO.play_sound(gunshot_noise)
 			last_shot_time_ms = Time.get_ticks_msec()
 	# extra
 	if $debug.visible:

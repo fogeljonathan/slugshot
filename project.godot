@@ -27,6 +27,7 @@ buses/size/viewport_width=1280
 [autoload]
 
 SIGNALS="*res://globals/SIGNALS.gd"
+AUDIO="*uid://b1wr85q7lggmh"
 
 [display]
 

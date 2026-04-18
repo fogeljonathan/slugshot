@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://bilaoepqpyoe3"]
+
+[ext_resource type="Texture2D" uid="uid://c3pnmdj2bx2o3" path="res://assets/resources/shaker_jumping.tres" id="1_smx4a"]
+[ext_resource type="Texture2D" uid="uid://dbgwtf8gsdd6a" path="res://assets/sprites/sprites/shaker_jumping-Sheet.png" id="2_qlj8y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd0kq"]
+atlas = ExtResource("1_smx4a")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqhtx"]
+atlas = ExtResource("1_smx4a")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wexee"]
+atlas = ExtResource("1_smx4a")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lniyl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd0kq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqhtx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wexee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqhtx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd0kq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s72hp"]
+radius = 7.0
+
+[node name="Shaker" type="RigidBody2D" unique_id=308882633]
+disable_mode = 2
+collision_layer = 0
+collision_mask = 0
+mass = 0.001
+gravity_scale = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2085521950]
+sprite_frames = SubResource("SpriteFrames_lniyl")
+autoplay = "default"
+frame = 4
+frame_progress = 0.5072707
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1452269825]
+visible = false
+texture_filter = 1
+texture = ExtResource("2_qlj8y")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1421001232]
+position = Vector2(7, 0)
+shape = SubResource("CircleShape2D_s72hp")
