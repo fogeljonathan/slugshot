@@ -55,8 +55,12 @@ func _process(delta) -> void:
 	# l/r sprite flipping
 	if state_dir == DIR.LEFT:
 		$slug_animation.scale = Vector2(-1,1)
+		$CollisionShape2D.position.x = -7
+		$CollisionShape2D.rotation = -30 * PI/180
 	else:
 		$slug_animation.scale = Vector2(1,1)
+		$CollisionShape2D.position.x = 7
+		$CollisionShape2D.rotation = 30 * PI/180
 	# animation handling
 	if state_motion == MOTION.IDLE:
 		$slug_animation.animation = "idle_right"
@@ -68,8 +72,8 @@ func _process(delta) -> void:
 	else:
 		velocity *= (1- (delta*friction_term))
 	var collision = move_and_collide(velocity)
-	if collision:
-		velocity = 0.5 * velocity.bounce(collision.get_normal())
+	#if collision:
+	#	velocity = 0.5 * velocity.bounce(collision.get_normal())
 	
 	# aiming
 	$crosshair.position = get_global_mouse_position()-self.position

@@ -20,8 +20,7 @@ stream_0/stream = ExtResource("2_hqawr")
 stream_1/stream = ExtResource("3_7l56x")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5tm26"]
-random_pitch = 1.1892071
-random_volume_offset_db = 5.0
+random_pitch = 1.2599211
 streams_count = 6
 stream_0/stream = ExtResource("5_enm4s")
 stream_1/stream = ExtResource("6_l2mvc")
@@ -89,8 +88,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7rcry"]
-radius = 7.0
-height = 21.5885
+radius = 6.3301263
+height = 22.588455
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ehmy"]
 atlas = ExtResource("4_7ehmy")
@@ -150,6 +149,7 @@ y_sort_enabled = true
 collision_layer = 4
 collision_mask = 10
 motion_mode = 1
+safe_margin = 2.0
 script = ExtResource("1_6twnc")
 movement_noise = SubResource("AudioStreamRandomizer_ax877")
 gunshot_noise = SubResource("AudioStreamRandomizer_5tm26")
@@ -172,14 +172,13 @@ offset_bottom = -19.0
 
 [node name="slug_animation" type="AnimatedSprite2D" parent="." unique_id=501137483]
 texture_filter = 1
-position = Vector2(-4, -8)
+position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_ippm4")
 animation = &"idle_right"
 autoplay = "idle_right"
-frame_progress = 0.60875976
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=961244094]
-position = Vector2(0, -2)
+position = Vector2(7, -3)
 rotation = 0.523598
 shape = SubResource("CapsuleShape2D_7rcry")
 

@@ -54,6 +54,8 @@ position = Vector2(405, 244)
 [node name="bullets" type="Node" parent="." unique_id=1327676479]
 
 [node name="boundaries" type="StaticBody2D" parent="." unique_id=407132993]
+collision_layer = 8
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries" unique_id=1656264792]
 shape = SubResource("SegmentShape2D_2e25g")
