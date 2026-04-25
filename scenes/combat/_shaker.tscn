@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bilaoepqpyoe3"]
 
+[ext_resource type="Script" uid="uid://c78why7xw04s0" path="res://scenes/combat/_shaker.gd" id="1_qlj8y"]
 [ext_resource type="Texture2D" uid="uid://c3pnmdj2bx2o3" path="res://assets/resources/shaker_jumping.tres" id="1_smx4a"]
 [ext_resource type="Texture2D" uid="uid://dbgwtf8gsdd6a" path="res://assets/sprites/sprites/shaker_jumping-Sheet.png" id="2_qlj8y"]
 
@@ -38,15 +39,19 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_s72hp"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_smx4a"]
 radius = 7.0
+height = 26.0
 
 [node name="Shaker" type="RigidBody2D" unique_id=308882633]
 disable_mode = 2
-collision_layer = 0
-collision_mask = 0
+collision_layer = 2
+collision_mask = 13
 mass = 0.001
 gravity_scale = 0.0
+contact_monitor = true
+angular_damp = 100.0
+script = ExtResource("1_qlj8y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2085521950]
 sprite_frames = SubResource("SpriteFrames_lniyl")
@@ -61,5 +66,7 @@ texture = ExtResource("2_qlj8y")
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1421001232]
-position = Vector2(7, 0)
-shape = SubResource("CircleShape2D_s72hp")
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_smx4a")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

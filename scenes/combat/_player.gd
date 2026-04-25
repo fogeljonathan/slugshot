@@ -7,7 +7,7 @@ var friction_term:float = 10.
 # gun and bullet spawning
 var last_shot_time_ms:int = 0
 @export var shot_delay_ms:float = .2 * 1000
-@export var bullet_speed:float = 200
+@export var bullet_speed:float = 20
 var tween_muzzle_flash : Tween
 
 # state machine
@@ -74,6 +74,11 @@ func _process(delta) -> void:
 	# aiming
 	$crosshair.position = get_global_mouse_position()-self.position
 	$gun_animation.look_at(get_global_mouse_position())
+	if get_global_mouse_position().x < self.global_position.x:
+		$gun_animation.scale.y = -1
+	else:
+		$gun_animation.scale.y = 1
+		
 	# shooting
 	if Input.is_action_pressed("shoot") :
 		if validate_shot():
