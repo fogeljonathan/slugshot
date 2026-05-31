@@ -4,7 +4,9 @@ extends RigidBody2D
 @onready var last_landing_time_ms:int = Time.get_ticks_msec()
 
 @onready var jump_cooldown_ms:float = 1000 + randi_range(-100,100)
-@onready var jump_duration_ms:float = 2000 + randi_range(-100,100)
+@onready var jump_duration_ms:float = 2000 + randi_range(-500,500)
+
+@onready var anim_fps = randi_range(4,8)
 
 @onready var jump_vel:float = 20 + randf_range(-5,5)
 
@@ -14,7 +16,9 @@ var vel_x_tween:Tween
 var vel_y_tween:Tween
 
 func _ready() -> void:
-	pass
+	$AnimatedSprite2D.get_sprite_frames().set_animation_speed("idle", anim_fps);
+	$AnimatedSprite2D.get_sprite_frames().set_animation_speed("jump", anim_fps);
+	$AnimatedSprite2D.play("idle")
 
 func _process(delta: float) -> void:
 	var what_time_is_it = Time.get_ticks_msec()
@@ -30,7 +34,6 @@ func _process(delta: float) -> void:
 		last_landing_time_ms = what_time_is_it
 
 func jump():
-	$AnimatedSprite2D.play("jump")
 	print("jump")
 	var player_location = get_player_location()
 	var move_to = self.global_position + (player_location - self.global_position).normalized() * jump_vel
@@ -46,6 +49,7 @@ func jump():
 	
 	vel_y_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	vel_y_tween.tween_property(self, "global_position:y", move_to.y, jump_duration_ms/1000 )
+	$AnimatedSprite2D.play("jump")
 	
 func land():
 	print("land")
