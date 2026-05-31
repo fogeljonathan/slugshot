@@ -2,7 +2,7 @@ extends Node2D
 
 @export var _bullet : PackedScene
 @export var _shaker : PackedScene
-@export var shaker_spawn_delay_ms = 1000
+@export var shaker_spawn_delay_ms = 750
 var time_since_shaker_spawn_ms = 0
 var game_time = 0
 func _ready() -> void:
@@ -28,5 +28,8 @@ func spawn_shaker(count):
 	for n in range(count): 
 		var s = _shaker.instantiate()
 		s.position = Vector2(randi_range(0, get_viewport().size.x), randi_range(0, get_viewport().size.y))
+		var player_keepout_rad = 50
+		while (s.position - self.get_parent().get_child(2).global_position).length() < player_keepout_rad:
+			s.position = Vector2(randi_range(0, get_viewport().size.x), randi_range(0, get_viewport().size.y))
 		get_node("shakers").add_child(s)
 		

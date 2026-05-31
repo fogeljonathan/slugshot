@@ -34,7 +34,6 @@ func _process(delta: float) -> void:
 		last_landing_time_ms = what_time_is_it
 
 func jump():
-	print("jump")
 	var player_location = get_player_location()
 	var move_to = self.global_position + (player_location - self.global_position).normalized() * jump_vel
 	
@@ -52,7 +51,6 @@ func jump():
 	$AnimatedSprite2D.play("jump")
 	
 func land():
-	print("land")
 	$AnimatedSprite2D.play("idle")
 
 func get_player_location() -> Vector2:
@@ -61,8 +59,14 @@ func get_player_location() -> Vector2:
 func _on_body_entered(body: Node) -> void:
 	# bullet
 	if body is RigidBody2D:
+		SIGNALS.emit_signal("bullet_hits_shaker")
 		body.queue_free()
-		self.queue_free()
+		brb_killin_ma_self()
 	
+	#player
 	if body is CharacterBody2D:
-		print("character")
+		SIGNALS.emit_signal("shaker_hits_player")
+		brb_killin_ma_self()
+
+func brb_killin_ma_self():
+	self.queue_free()

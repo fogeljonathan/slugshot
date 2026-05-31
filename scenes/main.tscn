@@ -15,6 +15,25 @@ texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="UI" type="Control" parent="SubViewportContainer" unique_id=1250510130]
+layout_mode = 2
+
+[node name="lives" type="Label" parent="SubViewportContainer/UI" unique_id=657821091]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 242.0
+offset_right = 167.0
+offset_bottom = 265.0
+text = "Lives: XXX"
+
+[node name="score" type="Label" parent="SubViewportContainer/UI" unique_id=1604984420]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 242.0
+offset_right = 390.0
+offset_bottom = 265.0
+text = "Score: XXX"
+
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1118856749]
 handle_input_locally = false
 size = Vector2i(480, 270)

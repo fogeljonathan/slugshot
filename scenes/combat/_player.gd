@@ -6,7 +6,7 @@ var friction_term:float = 10.
 
 # gun and bullet spawning
 var last_shot_time_ms:int = 0
-@export var shot_delay_ms:float = .2 * 1000
+@export var shot_delay_ms:float = .5 * 1000
 @export var bullet_speed:float = 20
 var tween_muzzle_flash : Tween
 
@@ -87,7 +87,10 @@ func _process(delta) -> void:
 	if Input.is_action_pressed("shoot") :
 		if validate_shot():
 			# shoot!
-			SIGNALS.emit_signal("spawn_bullet", $gun_animation/end_of_gun.global_position, $gun_animation.global_rotation, bullet_speed)
+			
+			var this_bullet_speed = (10*self.velocity + Vector2.from_angle($gun_animation.global_rotation) * bullet_speed).length()
+			
+			SIGNALS.emit_signal("spawn_bullet", $gun_animation/end_of_gun.global_position, $gun_animation.global_rotation, this_bullet_speed)
 			$gun_animation.animation = "shooting"
 			$gun_animation.play()
 			AUDIO.play_sound(gunshot_noise)
@@ -102,6 +105,8 @@ func _do_muzzle_flash() -> void:
 	$gun_animation/end_of_gun/muzzle_flash.energy = 3
 	tween_muzzle_flash = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	tween_muzzle_flash.tween_property($gun_animation/end_of_gun/muzzle_flash, "energy", 0, .1)
+	
+	get_parent().get_child(0).shake_strength = randf_range(.25,1)
 	
 func validate_shot() -> bool:
 	if Time.get_ticks_msec() - last_shot_time_ms > shot_delay_ms:
