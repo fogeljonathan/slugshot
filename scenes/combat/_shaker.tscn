@@ -37,6 +37,31 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqhtx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd0kq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd0kq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqhtx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wexee")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 6.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_smx4a"]
@@ -56,9 +81,8 @@ script = ExtResource("1_qlj8y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2085521950]
 sprite_frames = SubResource("SpriteFrames_lniyl")
-autoplay = "default"
-frame = 4
-frame_progress = 0.5072707
+animation = &"jump"
+autoplay = "jump"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1452269825]
 visible = false
