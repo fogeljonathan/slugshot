@@ -42,7 +42,7 @@ func jump():
 	if vel_y_tween and vel_y_tween.is_running():
 		vel_y_tween.kill()
 		
-	vel_x_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_LINEAR)
+	vel_x_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	vel_x_tween.tween_property(self, "global_position:x", move_to.x, jump_duration_ms/1000 )
 	
 	

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://igi30xbtb2o" path="res://assets/sprites/sprites/checkerboard_floor.png" id="3_2e25g"]
 [ext_resource type="PackedScene" uid="uid://bilaoepqpyoe3" path="res://scenes/combat/_shaker.tscn" id="3_nv75v"]
 [ext_resource type="PackedScene" uid="uid://cekw2ntpljjku" path="res://scenes/combat/_lamp.tscn" id="4_2e25g"]
+[ext_resource type="PackedScene" uid="uid://062t5j7sksvg" path="res://scenes/combat/_goop.tscn" id="4_45fr5"]
 [ext_resource type="Texture2D" uid="uid://ds5u7nhbuhdki" path="res://assets/sprites/normals/checkerboard_floor.png" id="4_nv75v"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_45fr5"]
@@ -29,6 +30,7 @@ b = Vector2(0, 270)
 script = ExtResource("1_fxjpw")
 _bullet = ExtResource("2_riexg")
 _shaker = ExtResource("3_nv75v")
+_goop = ExtResource("4_45fr5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=621291291]
 texture_filter = 1
