@@ -3,9 +3,15 @@ extends Node2D
 @export var _bullet : PackedScene
 @export var _shaker : PackedScene
 @export var _goop : PackedScene
-@export var shaker_spawn_delay_ms = 750
+
+@export var shaker_spawn_delay_ms = 2000
+@export var shaker_spawn_delay_speedup_percent = .1
+@export var shaker_spawn_delay_speedup_interval_ms = 5000
 var time_since_shaker_spawn_ms = 0
+var time_since_shaker_spawn_speedup = 0
+@onready var level = 0
 var game_time = 0
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	SIGNALS.spawn_bullet.connect(_on_spawn_bullet)
@@ -15,6 +21,13 @@ func _process(delta: float) -> void:
 	if Time.get_ticks_msec() - time_since_shaker_spawn_ms > shaker_spawn_delay_ms:
 			time_since_shaker_spawn_ms = Time.get_ticks_msec()
 			spawn_shaker(1)
+			
+	if Time.get_ticks_msec() - time_since_shaker_spawn_speedup > shaker_spawn_delay_speedup_interval_ms:
+		time_since_shaker_spawn_speedup = Time.get_ticks_msec()
+		shaker_spawn_delay_ms *= 1 - shaker_spawn_delay_speedup_percent
+		level += 1
+		
+		SIGNALS.level_change.emit(level)
 
 func _on_spawn_bullet(spawn_position: Vector2, spawn_rotation: float, spawn_speed: float) -> void:
 	var b = _bullet.instantiate()
@@ -33,9 +46,10 @@ func spawn_shaker(count):
 			s.position = Vector2(randi_range(0, get_viewport().size.x), randi_range(0, get_viewport().size.y))
 		get_node("shakers").add_child(s)
 	
-func _on_spawn_goop(pos):
+func _on_spawn_goop(pos, scale):
 	var b = _goop.instantiate()
 	b.position = pos
 	b.rotation = randf_range(0,PI)
+	b.scale = Vector2(scale,scale)
 	
 	get_node("bullets").add_child(b)

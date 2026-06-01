@@ -3,12 +3,12 @@ extends RigidBody2D
 @onready var last_jumping_time_ms:int = -INF
 @onready var last_landing_time_ms:int = Time.get_ticks_msec()
 
-@onready var jump_cooldown_ms:float = 1000 + randi_range(-100,100)
+@onready var jump_cooldown_ms:float = 1000 + randi_range(-500,500)
 @onready var jump_duration_ms:float = 2000 + randi_range(-500,500)
 
 @onready var anim_fps = randi_range(4,8)
 
-@onready var jump_vel:float = 20 + randf_range(-5,5)
+@onready var jump_vel:float = 20 + randf_range(-10,10)
 
 @onready var STATUS:String = "idle"
 
@@ -60,6 +60,7 @@ func _on_body_entered(body: Node) -> void:
 	# bullet
 	if body is RigidBody2D:
 		SIGNALS.emit_signal("bullet_hits_shaker")
+		SIGNALS.emit_signal("spawn_goop", self.global_position, 2)
 		body.queue_free()
 		brb_killin_ma_self()
 	
