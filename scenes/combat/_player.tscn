@@ -65,7 +65,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l2mvc")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_right",
 "speed": 3.0
 }, {
@@ -82,7 +82,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l2mvc")
 }],
-"loop": true,
+"loop": 1,
 "name": &"moving_right",
 "speed": 6.0
 }]
@@ -125,7 +125,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7ehmy")
 }],
-"loop": false,
+"loop": 0,
 "name": &"shooting",
 "speed": 30.0
 }]

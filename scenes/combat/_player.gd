@@ -9,6 +9,7 @@ var last_shot_time_ms:int = 0
 @export var shot_delay_ms:float = .5 * 1000
 @export var bullet_speed:float = 20
 var tween_muzzle_flash : Tween
+var tween_gun_xy_flip : Tween
 
 # state machine
 enum DIR {LEFT, RIGHT}
@@ -16,6 +17,7 @@ enum MOTION {MOVING, IDLE}
 @onready var state_dir:DIR = DIR.RIGHT
 @onready var state_motion:MOTION = MOTION.IDLE
 var inputdir = Vector2(0,0)
+var tween_xy_flip : Tween
 
 # audio 
 @export var movement_noise : AudioStream
@@ -54,11 +56,13 @@ func _input(event: InputEvent) -> void:
 func _process(delta) -> void:
 	# l/r sprite flipping
 	if state_dir == DIR.LEFT:
-		$slug_animation.scale = Vector2(-1,1)
+		flip_player_sprite(-1)
+		#$slug_animation.scale = Vector2(-1,1)
 		$CollisionShape2D.position.x = -7
 		$CollisionShape2D.rotation = -30 * PI/180
 	else:
-		$slug_animation.scale = Vector2(1,1)
+		#$slug_animation.scale = Vector2(1,1)
+		flip_player_sprite(1)
 		$CollisionShape2D.position.x = 7
 		$CollisionShape2D.rotation = 30 * PI/180
 	# animation handling
@@ -79,9 +83,11 @@ func _process(delta) -> void:
 	$crosshair.position = get_global_mouse_position()-self.position
 	$gun_animation.look_at(get_global_mouse_position())
 	if get_global_mouse_position().x < self.global_position.x:
-		$gun_animation.scale.y = -1
+		flip_gun_sprite(-1)
+		#$gun_animation.scale.y = -1
 	else:
-		$gun_animation.scale.y = 1
+		flip_gun_sprite(1)
+		#$gun_animation.scale.y = 1
 		
 	# shooting
 	if Input.is_action_pressed("shoot") :
@@ -112,3 +118,27 @@ func validate_shot() -> bool:
 	if Time.get_ticks_msec() - last_shot_time_ms > shot_delay_ms:
 		return true
 	return false
+	
+func flip_player_sprite(right:int) -> void:
+	if $slug_animation.scale.x / abs($slug_animation.scale.x) == right:
+		# looking corect way already
+		$slug_animation.scale.y = 1
+		return
+	if tween_xy_flip && tween_xy_flip.is_running():
+		tween_xy_flip.kill()
+		print("ah!")
+	
+	tween_xy_flip = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween_xy_flip.tween_property($slug_animation, "scale", Vector2(right, 1), .05)
+	
+func flip_gun_sprite(right:int) -> void:
+	if $gun_animation.scale.y / abs($gun_animation.scale.y) == right:
+		$gun_animation.scale.x = 1
+		# looking corect way already
+		return
+	if tween_gun_xy_flip && tween_gun_xy_flip.is_running():
+		tween_gun_xy_flip.kill()
+		print("ah!")
+	
+	tween_gun_xy_flip = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween_gun_xy_flip.tween_property($gun_animation, "scale", Vector2(1, right), .05)
