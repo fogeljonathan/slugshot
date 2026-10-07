@@ -10,6 +10,8 @@ var last_shot_time_ms:int = 0
 @export var bullet_speed:float = 20
 var tween_muzzle_flash : Tween
 var tween_gun_xy_flip : Tween
+var shots_per_reload : int = 5
+var shots_since_reload : int = 0
 
 # state machine
 enum DIR {LEFT, RIGHT}
@@ -25,6 +27,7 @@ var last_movement_noise_time_ms:int = 0
 var movement_noise_delay_ms:int = 310
 @export var idle_noise : AudioStream
 @export var gunshot_noise : AudioStream
+@export var reload_noise : AudioStream
 
 func _ready() -> void:
 	if !SIGNALS.is_connected("spawn_muzzle_flash", _do_muzzle_flash):
@@ -74,10 +77,6 @@ func _process(delta) -> void:
 	
 	velocity = velocity.lerp(inputdir.normalized(), .05)
 	
-	#if inputdir != Vector2(0,0):
-	#	velocity = inputdir.normalized()
-	#else:
-	#	velocity *= (1- (delta*friction_term))
 	var collision = move_and_collide(velocity)
 	if collision:
 		velocity = 0.5 * velocity.bounce(collision.get_normal())
@@ -96,9 +95,8 @@ func _process(delta) -> void:
 	if Input.is_action_pressed("shoot") :
 		if validate_shot():
 			# shoot!
-			
+			shots_since_reload += 1 
 			var this_bullet_speed = (10*self.velocity + Vector2.from_angle($gun_animation.global_rotation) * bullet_speed).length()
-			
 			SIGNALS.emit_signal("spawn_bullet", $gun_animation/end_of_gun.global_position, $gun_animation.global_rotation, this_bullet_speed)
 			$gun_animation.animation = "shooting"
 			$gun_animation.play()
@@ -119,9 +117,20 @@ func _do_muzzle_flash() -> void:
 	
 func validate_shot() -> bool:
 	if Time.get_ticks_msec() - last_shot_time_ms > shot_delay_ms:
-		return true
-	return false
-	
+		if shots_since_reload >= shots_per_reload : 
+			reload()
+			return false
+		else:
+			return true
+	else:
+		return false
+
+func reload() -> void:
+	AUDIO.play_sound(reload_noise)
+	shots_since_reload = 0
+	last_shot_time_ms = Time.get_ticks_msec()
+	SIGNALS.emit_signal("reload_gun")
+
 func flip_player_sprite(right:int) -> void:
 	if $slug_animation.scale.x / abs($slug_animation.scale.x) == right:
 		# looking corect way already
@@ -129,7 +138,6 @@ func flip_player_sprite(right:int) -> void:
 		return
 	if tween_xy_flip && tween_xy_flip.is_running():
 		tween_xy_flip.kill()
-		print("ah!")
 	
 	tween_xy_flip = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	tween_xy_flip.tween_property($slug_animation, "scale", Vector2(right, 1), .05)
@@ -141,7 +149,6 @@ func flip_gun_sprite(right:int) -> void:
 		return
 	if tween_gun_xy_flip && tween_gun_xy_flip.is_running():
 		tween_gun_xy_flip.kill()
-		print("ah!")
 	
 	tween_gun_xy_flip = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	tween_gun_xy_flip.tween_property($gun_animation, "scale", Vector2(1, right), .05)

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://du5iorwifvxwt" path="res://scenes/ui.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://b18j42hyx1ouc" path="res://scenes/combat/game.tscn" id="1_o5qli"]
 [ext_resource type="Shader" uid="uid://bnoaalv4cghr1" path="res://assets/resources/color_palette_enforcer.gdshader" id="2_sugp2"]
+[ext_resource type="Theme" uid="uid://cwhypcanuoqiu" path="res://assets/resources/mytheme.tres" id="2_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://bnlxngibd7iji" path="res://assets/ammo-8-1x.png" id="3_jyhfs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
@@ -13,38 +14,108 @@ shader_parameter/palette = ExtResource("3_jyhfs")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=822289823]
 texture_filter = 1
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="UI" type="Control" parent="SubViewportContainer" unique_id=1250510130]
 layout_mode = 2
+theme = ExtResource("2_tbgi4")
 script = ExtResource("1_jyhfs")
 
 [node name="lives" type="RichTextLabel" parent="SubViewportContainer/UI" unique_id=1643904156]
+custom_minimum_size = Vector2(100, 20)
+custom_maximum_size = Vector2(100, 20)
 layout_mode = 0
-offset_left = 190.0
-offset_top = 244.0
-offset_right = 290.0
-offset_bottom = 269.0
+offset_left = 265.0
+offset_top = 236.0
+offset_right = 365.0
+offset_bottom = 256.0
+theme = ExtResource("2_tbgi4")
 bbcode_enabled = true
-text = "3/3 Lives"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ammo" type="RichTextLabel" parent="SubViewportContainer/UI" unique_id=1004372985]
+custom_minimum_size = Vector2(100, 20)
+custom_maximum_size = Vector2(100, 20)
+layout_mode = 0
+offset_left = 115.0
+offset_top = 236.0
+offset_right = 215.0
+offset_bottom = 256.0
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="score" type="RichTextLabel" parent="SubViewportContainer/UI" unique_id=1339948314]
+custom_minimum_size = Vector2(100, 20)
+custom_maximum_size = Vector2(100, 20)
 layout_mode = 0
 offset_left = 380.0
-offset_top = 245.0
+offset_top = 2.0
 offset_right = 480.0
-offset_bottom = 270.0
+offset_bottom = 22.0
+theme = ExtResource("2_tbgi4")
 bbcode_enabled = true
 text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="level" type="RichTextLabel" parent="SubViewportContainer/UI" unique_id=615607744]
+custom_minimum_size = Vector2(100, 20)
+custom_maximum_size = Vector2(100, 20)
 layout_mode = 0
-offset_top = 245.0
+offset_top = 2.0
 offset_right = 100.0
-offset_bottom = 270.0
+offset_bottom = 22.0
+theme = ExtResource("2_tbgi4")
 bbcode_enabled = true
 text = "Level: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pausemenu" type="Control" parent="SubViewportContainer/UI" unique_id=1564832234]
+visible = false
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 1
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 100.0
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/UI/pausemenu" unique_id=166756619]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7607843)
+metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="SubViewportContainer/UI/pausemenu" unique_id=408227117]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 76.0
+offset_right = 403.0
+offset_bottom = 107.0
+theme = ExtResource("2_tbgi4")
+text = "Quit"
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewportContainer/UI/pausemenu" unique_id=1167548710]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="SubViewportContainer/UI/pausemenu/CenterContainer" unique_id=1955832323]
+layout_mode = 2
+theme = ExtResource("2_tbgi4")
+text = "Resume"
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1118856749]
 handle_input_locally = false
