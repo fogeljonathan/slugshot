@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # movement
 var movement_speed:float = 1.
-var friction_term:float = 10.
+var friction_term:float = 5.
 
 # gun and bullet spawning
 var last_shot_time_ms:int = 0
@@ -71,13 +71,16 @@ func _process(delta) -> void:
 	if state_motion == MOTION.MOVING:
 		$slug_animation.animation = "moving_right"
 	# moving
-	if inputdir != Vector2(0,0):
-		velocity = inputdir.normalized()
-	else:
-		velocity *= (1- (delta*friction_term))
+	
+	velocity = velocity.lerp(inputdir.normalized(), .05)
+	
+	#if inputdir != Vector2(0,0):
+	#	velocity = inputdir.normalized()
+	#else:
+	#	velocity *= (1- (delta*friction_term))
 	var collision = move_and_collide(velocity)
-	#if collision:
-	#	velocity = 0.5 * velocity.bounce(collision.get_normal())
+	if collision:
+		velocity = 0.5 * velocity.bounce(collision.get_normal())
 	
 	# aiming
 	$crosshair.position = get_global_mouse_position()-self.position
