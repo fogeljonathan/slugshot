@@ -46,10 +46,10 @@ func spawn_shaker(count):
 			s.position = Vector2(randi_range(0, get_viewport().size.x), randi_range(0, get_viewport().size.y))
 		get_node("shakers").add_child(s)
 	
-func _on_spawn_goop(pos, scale):
+func _on_spawn_goop(pos, thisscale):
 	var b = _goop.instantiate()
 	b.position = pos
 	b.rotation = randf_range(0,PI)
-	b.scale = Vector2(scale,scale)
+	b.scale = Vector2(thisscale,thisscale)
 	
 	get_node("bullets").add_child(b)
