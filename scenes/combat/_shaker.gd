@@ -52,7 +52,6 @@ func jump():
 	vel_x_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	vel_x_tween.tween_property(self, "global_position:x", move_to.x, jump_duration_ms/1000 )
 	
-	
 	vel_y_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	vel_y_tween.tween_property(self, "global_position:y", move_to.y, jump_duration_ms/1000 )
 	$AnimatedSprite2D.play("jump")

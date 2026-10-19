@@ -28,10 +28,13 @@ var movement_noise_delay_ms:int = 310
 @export var idle_noise : AudioStream
 @export var gunshot_noise : AudioStream
 @export var reload_noise : AudioStream
+@export var ouch_noise : AudioStream
+
 
 func _ready() -> void:
 	if !SIGNALS.is_connected("spawn_muzzle_flash", _do_muzzle_flash):
 		SIGNALS.spawn_muzzle_flash.connect(_do_muzzle_flash)
+		SIGNALS.shaker_hits_player.connect(_on_shaker_hits_player)
 	
 func _input(event: InputEvent) -> void:
 	inputdir = Vector2(0, 0)
@@ -152,3 +155,6 @@ func flip_gun_sprite(right:int) -> void:
 	
 	tween_gun_xy_flip = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	tween_gun_xy_flip.tween_property($gun_animation, "scale", Vector2(1, right), .05)
+
+func _on_shaker_hits_player():
+	AUDIO.play_sound(ouch_noise)

@@ -12,6 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://dfb085lcwuqei" path="res://assets/sounds/shot-from-an-abandoned-building-at-an-enemy.mp3" id="9_51xid"]
 [ext_resource type="AudioStream" uid="uid://bv4pwty6sgx5s" path="res://assets/sounds/the-metal-clang-of-a-cannon-breech.mp3" id="10_fbahb"]
 [ext_resource type="AudioStream" uid="uid://eh7xs80x1mhs" path="res://assets/sounds/1911-reload.mp3" id="10_hqawr"]
+[ext_resource type="AudioStream" uid="uid://mvmujvem0om6" path="res://assets/sounds/freesound_community-ow-sound-38502.mp3" id="11_enm4s"]
+[ext_resource type="AudioStream" uid="uid://jpjyxgnghisv" path="res://assets/sounds/homemade_sfx-little-creature-hurt-sound-295405.mp3" id="12_l2mvc"]
+[ext_resource type="AudioStream" uid="uid://co6qik3hxt6k" path="res://assets/sounds/kodasworldproductions-characterpain-163914.mp3" id="13_xjoph"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ax877"]
 random_pitch = 1.9999999
@@ -34,6 +37,13 @@ stream_5/stream = ExtResource("10_fbahb")
 random_pitch = 1.2599211
 streams_count = 1
 stream_0/stream = ExtResource("10_hqawr")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ncxyw"]
+random_pitch = 1.2599211
+streams_count = 3
+stream_0/stream = ExtResource("11_enm4s")
+stream_1/stream = ExtResource("12_l2mvc")
+stream_2/stream = ExtResource("13_xjoph")
 
 [sub_resource type="Gradient" id="Gradient_1xo60"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -160,6 +170,7 @@ script = ExtResource("1_6twnc")
 movement_noise = SubResource("AudioStreamRandomizer_ax877")
 gunshot_noise = SubResource("AudioStreamRandomizer_5tm26")
 reload_noise = SubResource("AudioStreamRandomizer_g6xdp")
+ouch_noise = SubResource("AudioStreamRandomizer_ncxyw")
 
 [node name="player_light" type="PointLight2D" parent="." unique_id=1967414689]
 energy = 0.1
