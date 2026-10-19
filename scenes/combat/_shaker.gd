@@ -12,6 +12,12 @@ extends RigidBody2D
 
 @onready var STATUS:String = "idle"
 
+var spawn_scale_tween:Tween
+
+# audio
+@export var spawn_noise : AudioStream
+@export var death_noise : AudioStream
+
 var vel_x_tween:Tween
 var vel_y_tween:Tween
 
