@@ -101,6 +101,7 @@ layout_mode = 1
 anchors_preset = 0
 offset_right = 300.0
 offset_bottom = 100.0
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="SubViewportContainer/UI/pausemenu" unique_id=166756619]
 layout_mode = 1
@@ -109,10 +110,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 0.7607843)
 metadata/_edit_use_anchors_ = true
 
-[node name="Button2" type="Button" parent="SubViewportContainer/UI/pausemenu" unique_id=408227117]
+[node name="pause_quit" type="Button" parent="SubViewportContainer/UI/pausemenu/ColorRect" unique_id=408227117]
 layout_mode = 0
 offset_left = 219.0
 offset_top = 148.0
@@ -128,8 +130,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Button" type="Button" parent="SubViewportContainer/UI/pausemenu/CenterContainer" unique_id=1955832323]
+[node name="pause_continue" type="Button" parent="SubViewportContainer/UI/pausemenu/CenterContainer" unique_id=1955832323]
 layout_mode = 2
 theme = ExtResource("2_tbgi4")
 text = "Resume"
@@ -157,13 +160,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Button" type="Label" parent="SubViewportContainer/UI/gameovermenu/ColorRect2/CenterContainer2" unique_id=1944018819]
+[node name="gameoverlabel" type="Label" parent="SubViewportContainer/UI/gameovermenu/ColorRect2/CenterContainer2" unique_id=1944018819]
 layout_mode = 2
 theme = ExtResource("2_tbgi4")
 text = ":( Game Over :("
 
-[node name="Button3" type="Button" parent="SubViewportContainer/UI/gameovermenu/ColorRect2" unique_id=1678633968]
+[node name="gameovertry" type="Button" parent="SubViewportContainer/UI/gameovermenu/ColorRect2" unique_id=1678633968]
 layout_mode = 0
 offset_left = 176.0
 offset_top = 147.0
@@ -173,7 +177,7 @@ theme = ExtResource("2_tbgi4")
 text = "Try
 Again"
 
-[node name="Button4" type="Button" parent="SubViewportContainer/UI/gameovermenu/ColorRect2" unique_id=410113268]
+[node name="gameoverquit" type="Button" parent="SubViewportContainer/UI/gameovermenu/ColorRect2" unique_id=410113268]
 layout_mode = 0
 offset_left = 240.0
 offset_top = 147.0
@@ -240,3 +244,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="SubViewportContainer/UI/pausemenu/ColorRect/pause_quit" to="SubViewportContainer/UI" method="_on_pause_quit_pressed"]
+[connection signal="pressed" from="SubViewportContainer/UI/pausemenu/CenterContainer/pause_continue" to="SubViewportContainer/UI" method="_on_pause_continue_pressed"]
+[connection signal="pressed" from="SubViewportContainer/UI/gameovermenu/ColorRect2/gameovertry" to="SubViewportContainer/UI" method="_on_gameovertry_pressed"]
+[connection signal="pressed" from="SubViewportContainer/UI/gameovermenu/ColorRect2/gameoverquit" to="SubViewportContainer/UI" method="_on_gameoverquit_pressed"]

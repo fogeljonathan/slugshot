@@ -103,3 +103,19 @@ func _on_shaker_hits_player():
 	
 	if lives <= 0:
 		SIGNALS.emit_signal("game_over")
+
+
+func _on_gameovertry_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_gameoverquit_pressed() -> void:
+	get_tree().quit() 
+
+
+func _on_pause_continue_pressed() -> void:
+	SIGNALS.emit_signal("unpause")
+
+
+func _on_pause_quit_pressed() -> void:
+	get_tree().quit() 
