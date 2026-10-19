@@ -3,6 +3,25 @@
 [ext_resource type="Script" uid="uid://c78why7xw04s0" path="res://scenes/combat/_shaker.gd" id="1_qlj8y"]
 [ext_resource type="Texture2D" uid="uid://c3pnmdj2bx2o3" path="res://assets/resources/shaker_jumping.tres" id="1_smx4a"]
 [ext_resource type="Texture2D" uid="uid://dbgwtf8gsdd6a" path="res://assets/sprites/sprites/shaker_jumping-Sheet.png" id="2_qlj8y"]
+[ext_resource type="AudioStream" uid="uid://lxwoo8seu60j" path="res://assets/sounds/freesound_community-breaking-glass-82857.mp3" id="3_ncxyw"]
+[ext_resource type="AudioStream" uid="uid://b006wqcbc7ans" path="res://assets/sounds/virtual_vibes-cinematic-thud-fx-379991.mp3" id="3_wexee"]
+[ext_resource type="AudioStream" uid="uid://2pn30tebyrse" path="res://assets/sounds/freesound_community-breaking-glass-84819.mp3" id="4_rf7hh"]
+[ext_resource type="AudioStream" uid="uid://bvawboq3cprcp" path="res://assets/sounds/freesound_community-glass-bottle-shatter-84593.mp3" id="5_l2h2g"]
+[ext_resource type="AudioStream" uid="uid://dardmunmxquen" path="res://assets/sounds/freesound_community-jar-smash-46764.mp3" id="6_l5qbt"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3vsci"]
+random_pitch = 3.1748018
+random_volume_offset_db = 4.0
+streams_count = 1
+stream_0/stream = ExtResource("3_wexee")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j8n3l"]
+random_pitch = 1.2599211
+streams_count = 4
+stream_0/stream = ExtResource("3_ncxyw")
+stream_1/stream = ExtResource("4_rf7hh")
+stream_2/stream = ExtResource("5_l2h2g")
+stream_3/stream = ExtResource("6_l5qbt")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rd0kq"]
 atlas = ExtResource("1_smx4a")
@@ -78,6 +97,8 @@ contact_monitor = true
 max_contacts_reported = 100
 angular_damp = 100.0
 script = ExtResource("1_qlj8y")
+spawn_noise = SubResource("AudioStreamRandomizer_3vsci")
+death_noise = SubResource("AudioStreamRandomizer_j8n3l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2085521950]
 sprite_frames = SubResource("SpriteFrames_lniyl")

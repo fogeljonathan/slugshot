@@ -25,6 +25,7 @@ func _ready() -> void:
 	$AnimatedSprite2D.get_sprite_frames().set_animation_speed("idle", anim_fps);
 	$AnimatedSprite2D.get_sprite_frames().set_animation_speed("jump", anim_fps);
 	$AnimatedSprite2D.play("idle")
+	AUDIO.play_sound(spawn_noise)
 
 func _process(delta: float) -> void:
 	var what_time_is_it = Time.get_ticks_msec()
@@ -76,4 +77,5 @@ func _on_body_entered(body: Node) -> void:
 		brb_killin_ma_self()
 
 func brb_killin_ma_self():
+	AUDIO.play_sound(death_noise)
 	self.queue_free()
