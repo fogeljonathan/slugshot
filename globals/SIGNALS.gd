@@ -15,3 +15,7 @@ signal shaker_hits_player()
 signal bullet_hits_shaker()
 
 signal level_change(n)
+
+signal pause()
+signal unpause()
+signal game_over()

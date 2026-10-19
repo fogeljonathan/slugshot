@@ -23,9 +23,12 @@ func _ready():
 		shotsleft = shotsleft+"\u204C"
 	$ammo.text =  shotsleft
 
+func _process(delta: float) -> void:
+	$crosshair.position = get_global_mouse_position()-self.position
+	
 func _do_ammo_change(spawn_position:Vector2, spawn_rotation:float, spawn_speed:float):
 	shots -= 1
-
+	
 	var shotsleft = ""
 	for i in range(1,shots+1) :
 		shotsleft = shotsleft+"\u204C"
@@ -33,7 +36,7 @@ func _do_ammo_change(spawn_position:Vector2, spawn_rotation:float, spawn_speed:f
 	
 func _do_ammo_reload():
 	shots = maxshots
-
+	
 	var shotsleft = ""
 	for i in range(1,shots+1) :
 		shotsleft = shotsleft+"\u204C"
@@ -97,3 +100,6 @@ func _on_shaker_hits_player():
 		livesleft = livesleft+"\u2764"
 	
 	$lives.text = prefix + livesleft + suffix
+	
+	if lives <= 0:
+		SIGNALS.emit_signal("game_over")

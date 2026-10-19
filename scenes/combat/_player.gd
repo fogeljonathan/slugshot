@@ -85,7 +85,6 @@ func _process(delta) -> void:
 		velocity = 0.5 * velocity.bounce(collision.get_normal())
 	
 	# aiming
-	$crosshair.position = get_global_mouse_position()-self.position
 	$gun_animation.look_at(get_global_mouse_position())
 	if get_global_mouse_position().x < self.global_position.x:
 		flip_gun_sprite(-1)

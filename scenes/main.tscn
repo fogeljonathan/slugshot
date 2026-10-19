@@ -2,15 +2,31 @@
 
 [ext_resource type="Script" uid="uid://du5iorwifvxwt" path="res://scenes/ui.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://b18j42hyx1ouc" path="res://scenes/combat/game.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://cgjhuytlvittf" path="res://scenes/main.gd" id="1_tefeu"]
 [ext_resource type="Shader" uid="uid://bnoaalv4cghr1" path="res://assets/resources/color_palette_enforcer.gdshader" id="2_sugp2"]
 [ext_resource type="Theme" uid="uid://cwhypcanuoqiu" path="res://assets/resources/mytheme.tres" id="2_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://bnlxngibd7iji" path="res://assets/ammo-8-1x.png" id="3_jyhfs"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tefeu"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_o6xl0"]
+
+[sub_resource type="Gradient" id="Gradient_tipki"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_85g3d"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_choun"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
 shader = ExtResource("2_sugp2")
 shader_parameter/palette = ExtResource("3_jyhfs")
 
 [node name="Main" type="Node" unique_id=105697749]
+script = ExtResource("1_tefeu")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=822289823]
 texture_filter = 1
@@ -21,6 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="UI" type="Control" parent="SubViewportContainer" unique_id=1250510130]
+process_mode = 3
 layout_mode = 2
 theme = ExtResource("2_tbgi4")
 script = ExtResource("1_jyhfs")
@@ -97,10 +114,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Button2" type="Button" parent="SubViewportContainer/UI/pausemenu" unique_id=408227117]
 layout_mode = 0
-offset_left = 361.0
-offset_top = 76.0
-offset_right = 403.0
-offset_bottom = 107.0
+offset_left = 219.0
+offset_top = 148.0
+offset_right = 261.0
+offset_bottom = 197.0
 theme = ExtResource("2_tbgi4")
 text = "Quit"
 
@@ -116,6 +133,98 @@ grow_vertical = 2
 layout_mode = 2
 theme = ExtResource("2_tbgi4")
 text = "Resume"
+
+[node name="gameovermenu" type="Control" parent="SubViewportContainer/UI" unique_id=91045189]
+visible = false
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="ColorRect2" type="ColorRect" parent="SubViewportContainer/UI/gameovermenu" unique_id=2044121244]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7607843)
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer2" type="CenterContainer" parent="SubViewportContainer/UI/gameovermenu/ColorRect2" unique_id=780298699]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Label" parent="SubViewportContainer/UI/gameovermenu/ColorRect2/CenterContainer2" unique_id=1944018819]
+layout_mode = 2
+theme = ExtResource("2_tbgi4")
+text = ":( Game Over :("
+
+[node name="Button3" type="Button" parent="SubViewportContainer/UI/gameovermenu/ColorRect2" unique_id=1678633968]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 147.0
+offset_right = 240.0
+offset_bottom = 197.0
+theme = ExtResource("2_tbgi4")
+text = "Try
+Again"
+
+[node name="Button4" type="Button" parent="SubViewportContainer/UI/gameovermenu/ColorRect2" unique_id=410113268]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 147.0
+offset_right = 304.0
+offset_bottom = 197.0
+theme = ExtResource("2_tbgi4")
+text = "Quit"
+
+[node name="crosshair" type="Node2D" parent="SubViewportContainer/UI" unique_id=1332237587]
+material = SubResource("CanvasItemMaterial_tefeu")
+
+[node name="left_line" type="Line2D" parent="SubViewportContainer/UI/crosshair" unique_id=919021010]
+use_parent_material = true
+position = Vector2(-1.9073486e-06, 0)
+points = PackedVector2Array(-9.999998, 0, -4.999998, 0)
+width = 3.0
+gradient = SubResource("Gradient_o6xl0")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="right_line" type="Line2D" parent="SubViewportContainer/UI/crosshair" unique_id=2145282588]
+use_parent_material = true
+points = PackedVector2Array(5, 0, 10, 0)
+width = 3.0
+gradient = SubResource("Gradient_tipki")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="up_line" type="Line2D" parent="SubViewportContainer/UI/crosshair" unique_id=1200341227]
+use_parent_material = true
+points = PackedVector2Array(0, -5, 0, -10)
+width = 3.0
+gradient = SubResource("Gradient_85g3d")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="down_line" type="Line2D" parent="SubViewportContainer/UI/crosshair" unique_id=662429594]
+use_parent_material = true
+points = PackedVector2Array(0, 5, 0, 10)
+width = 3.0
+gradient = SubResource("Gradient_choun")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1118856749]
 handle_input_locally = false
